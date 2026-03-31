@@ -1,0 +1,23 @@
+class Solution {
+    public String convert(String s, int numRows) {
+        if(numRows==1) return s;
+        StringBuilder rows[] = new StringBuilder[numRows];
+        for(int i = 0; i < numRows; i++){
+            rows[i] = new StringBuilder();
+        }
+        int currentRow = 0;
+        boolean goingUpward = true;
+        for(char c : s.toCharArray()){
+            rows[currentRow].append(c);
+            if(currentRow == 0 || currentRow == numRows-1){
+                goingUpward = !goingUpward;
+            }
+            currentRow += (goingUpward?-1:1);
+        }
+        StringBuilder res = new StringBuilder();
+        for(int i = 0; i < numRows; i++){
+            res.append(rows[i]);
+        }
+        return res.toString();
+    }
+} 
